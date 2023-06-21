@@ -15,6 +15,8 @@ class ConsultaSerializer(serializers.ModelSerializer):
 
 
 class MedicoSerializer(serializers.ModelSerializer):
+    consultas = serializers.HyperlinkedRelatedField (
+        many=True, read_only=True, view_name='consulta-detail')
     class Meta:
         model = Medico
         fields = (
@@ -23,4 +25,5 @@ class MedicoSerializer(serializers.ModelSerializer):
             'nome_social',
             'crm',
             'especialidade',
+            'consultas'
         )

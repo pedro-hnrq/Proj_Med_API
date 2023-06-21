@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # LIBs
     'django_filters',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # APPs
     'agendamento',
@@ -126,11 +127,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # DRF
 REST_FRAMEWORK = {
+    #GUIA DE AUTENTICAÇÕES (Session ou token)
     'DEFAULT_AUTHENTICATION_CLASSES':(
         'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
-    #TODO: só poderá fazer o PUT, POST ou DELETE se tiver autenticado, caso não, só lista o API.
+    #GUIA DE AUTORIZAÇÕES
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
-    )
+    ),
+    # Paginação.
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 4,
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle',
+    ),
+
 }

@@ -1,5 +1,13 @@
 from django.urls import path
-from .views import MedicosAPIView, MedicoAPIView, ConsultasAPIView, ConsultaAPIView
+from rest_framework.routers import SimpleRouter
+from .views import (MedicosAPIView, MedicoAPIView, ConsultasAPIView, ConsultaAPIView,
+                   MedicoViewSet, ConsultaViewSet ) 
+
+
+router = SimpleRouter()
+router.register('medicos', MedicoViewSet)
+router.register('consultas', ConsultaViewSet)
+
 
 urlpatterns = [
     path('medicos/', MedicosAPIView.as_view(), name='medicos'),

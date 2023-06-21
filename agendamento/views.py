@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -16,6 +16,8 @@ class MedicosAPIView(generics.ListCreateAPIView):
     """
     queryset = Medico.objects.all()
     serializer_class = MedicoSerializer
+
+    
 
 
 class MedicoAPIView(generics.RetrieveUpdateDestroyAPIView):
@@ -53,4 +55,30 @@ class ConsultaAPIView(generics.RetrieveUpdateDestroyAPIView):
 """"
 API V2
 """
+
+class MedicoViewSet(viewsets.ModelViewSet):
+    """
+    API Medico - Listar e Criar
+    """
+    queryset = Medico.objects.all()
+    serializer_class = MedicoSerializer
+
+    @action(detail=True, methods=['get'])
+    def consultas(self, request, pk=None):
+        profissional = self.get_object()
+        serializer = ConsultaSerializer(profissional.consultas.all(), many=True)
+        return Response(serializer.data)
+
+
+class ConsultaViewSet(viewsets.ModelViewSet):
+    """
+    API Consulta - Listar e Criar
+    """
+    queryset = Consulta.objects.all()
+    serializer_class = ConsultaSerializer
+
+    def get_queryset(self):
+        if self.kwargs.get('medico_pk'):
+            return self.queryset.filter(profissional=self.kwargs.get('medico_pk'))
+        return self.queryset.all()
 
