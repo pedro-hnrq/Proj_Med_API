@@ -1,6 +1,8 @@
-# Projeto Consultas MED API
+<h1 align="center"> Projeto Consultas MED API </h1>
 
 <h2 align="center"> Prévia <h2>
+
+![proj_MED-gif-maker](https://github.com/pedro-hnrq/Proj_Med_API/assets/74242717/dfa82085-b1a0-48b4-be34-e90dcabc4d23)
 
 
 <h3>Objetivo</h3>
@@ -33,7 +35,7 @@
   <h5>Para que o usuário execute o DRF na sua máquina, siga os seguintes passos:</h5>
   
 <ol>
-<h5><li>Essas configurações é para máquina com Sistema Operacional <strong>LINUX</strong>, já tendo o GIT e Python instalado. Ressaltabdo, tem que ter noções de django.</li></h5>
+<h5><li>Essas configurações é para máquina com Sistema Operacional LINUX, já tendo o GIT e Python instalado. Ressaltabdo, tem que ter noções de django.</li></h5>
 <h5><li>Clone este repositório em sua máquina utilizando o seguinte comando no terminal: 
  
 ```
@@ -79,6 +81,6 @@ python3 manage.py runserver
 
 <h5><li>Para acessar a API, utilize o endereço http://localhost:8000/api/v1/ para a versão 1 da API e http://localhost:8000/api/v2/ para a versão 2 da API. As rotas disponíveis podem ser encontradas nos arquivos med_cons/urls.py e agendamento/urls.py.</li></h5> 
   
-<h5><li>Observação: usei o IDE do <strong>Visual Studio Code</strong>, juntamente com a extensão que instalei na IDE, chamado <strong>Thunder Client</strong> para realiza as requisição HTTP (GET, POST, PUT, DELETE e Token).</li></h5>
+<h5><li>Observação: usei o IDE do Visual Studio Code, juntamente com a extensão que instalei na IDE, chamado Thunder Client para realiza as requisição HTTP (GET, POST, PUT, DELETE e Token).</li></h5>
 </ol>
 
