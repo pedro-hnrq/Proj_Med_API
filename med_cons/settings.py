@@ -1,18 +1,14 @@
 from pathlib import Path
 import os
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)x4(!$s#t*$cw#3-9zp&h8q%%i==_m1$x^3vq8n_x32ul+iob@'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -31,6 +27,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_spectacular',
 
     # APPs
     'agendamento',
@@ -125,7 +122,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# DRF
+# Django REST Framework - DRF
 REST_FRAMEWORK = {
     #GUIA DE AUTENTICAÇÕES (Session ou token)
     'DEFAULT_AUTHENTICATION_CLASSES':(
@@ -143,5 +140,14 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.AnonRateThrottle',
         'rest_framework.throttling.UserRateThrottle',
     ),
+    # SWAGGER
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Project MED API',
+    'DESCRIPTION': 'Scheduling control project for health professionals to patients',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    
 }
